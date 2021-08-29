@@ -1,0 +1,80 @@
+{% extends "layouts/base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Cadastro de Projeto{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastro de Projeto</h5>
+          <p class="card-text">
+            Preecha o formulário abaixo para cadastrar
+            um novo <code>Projeto</code>.
+          </p>
+          <form method="post">
+            <!-- Evitar ataque de Cross Site Request Forgery -->
+            {% csrf_token %}
+
+            <!-- Project Name -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nome do projeto</span>
+              </div>
+              {% render_field form.project_name class+="form-control" %}
+            </div>
+
+            <!-- Start_date -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Data de início</span>
+              </div>
+              {% render_field form.start_date class+="form-control" %}
+            </div>
+
+            <!-- Finish date -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Data de término</span>
+              </div>
+              {% render_field form.finish_date class+="form-control" %}
+            </div>
+
+            <!-- Amount -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Valor do projeto</span>
+              </div>
+              {% render_field form.proj_amount class+="form-control" %}
+            </div>
+
+            <!-- Risk -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Risco</span>
+              </div>
+              {% render_field form.proj_risk class+="form-control" %}
+            </div>
+
+            <!-- Participants -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Participantes</span>
+              </div>
+              {% render_field form.proj_team class+="form-control" %}
+            </div>
+
+            <a href="{% url 'lista_projetos' %}" class="btn btn-dark">
+              Voltar
+            </a>
+            <button class="btn btn-primary">Cadastrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
